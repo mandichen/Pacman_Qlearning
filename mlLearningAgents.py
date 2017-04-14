@@ -185,7 +185,7 @@ class QLearnAgent(Agent):
         # of training episodes
         self.incrementEpisodesSoFar()
         if self.getEpisodesSoFar() % 100 == 0:
-            print "Completed %s training" % self.getEpisodesSoFar()
+            print "Completed %s runs of training" % self.getEpisodesSoFar()
 
         if self.getEpisodesSoFar() == self.getNumTraining():
             msg = 'Training Done (turning off epsilon and alpha)'
