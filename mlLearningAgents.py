@@ -1,7 +1,6 @@
-# mlLearningAgents.py
-# MandiChen/13-apr-2017
-# based on the script written by
-# parsons/27-mar-2017
+# python 2.7 script
+# Chen/13-apr-2017
+# based on the script written by Parsons
 #
 #
 # A stub for a reinforcement learning agent to work with the Pacman
@@ -22,9 +21,6 @@
 # Student side autograding was added by Brad Miller, Nick Hay, and
 # Pieter Abbeel (pabbeel@cs.berkeley.edu).
 
-# The agent here was written by Simon Parsons, based on the code in
-# pacmanAgents.py
-# learningAgents.py
 
 from pacman import Directions
 from game import Agent
@@ -111,13 +107,10 @@ class QLearnAgent(Agent):
         self.q_value[(state,action)] = q + self.alpha*(reward + self.gamma*qmax - q)
 
     # return the action maximises Q of state
-    ## this function is a modified version of
-    ## computeActionFromQValues()
-    ## https://github.com/yuxinzhu/reinforcement/blob/master/qlearningAgents.py
     def doTheRightThing(self, state):
         legal = state.getLegalPacmanActions()
         # in the first half of trianing, the agent is forced not to stop
-        # or turn back while the ghost is not around
+        # or turn back while not being chased by the ghost
         if self.getEpisodesSoFar()*1.0/self.getNumTraining()<0.5:
             if Directions.STOP in legal:
                 legal.remove(Directions.STOP)
@@ -140,17 +133,12 @@ class QLearnAgent(Agent):
     def getAction(self, state):
 
         # The data we have about the state of the game
+        # the legal action of this state
         legal = state.getLegalPacmanActions()
         if Directions.STOP in legal:
             legal.remove(Directions.STOP)
-        """print "Legal moves: ", legal
-        print "Pacman position: ", state.getPacmanPosition()
-        print "Ghost positions:" , state.getGhostPositions()
-        print "Food locations: "
-        print state.getFood()
-        print "Score: ", state.getScore()"""
 
-        ######### update Q-value #############
+        # update Q-value
         reward = state.getScore()-self.score
         if len(self.lastState) > 0:
             last_state = self.lastState[-1]
@@ -158,20 +146,17 @@ class QLearnAgent(Agent):
             max_q = self.getMaxQ(state)
             self.updateQ(last_state, last_action, reward, max_q)
 
-        ####### e-greedy #############
+        # e-greedy
         if util.flipCoin(self.epsilon):
             action =  random.choice(legal)
         else:
             action =  self.doTheRightThing(state)
 
-        ###### update attributes ###############
+        # update attributes
         self.score = state.getScore()
         self.lastState.append(state)
         self.lastAction.append(action)
 
-        # Now pick what action to take. For now a random choice among
-        # the legal moves
-        # We have to return an action
         return action
 
     # Handle the end of episodes
@@ -179,8 +164,6 @@ class QLearnAgent(Agent):
     # This is called by the game after a win or a loss.
     def final(self, state):
 
-        #print "A game just ended!"
-        print "Final score", state.getScore()
         # update Q-values
         reward = state.getScore()-self.score
         last_state = self.lastState[-1]
@@ -192,7 +175,7 @@ class QLearnAgent(Agent):
         self.lastState = []
         self.lastAction = []
 
-        #### decrease epsilon during the trianing ####
+        # decrease epsilon during the trianing
         ep = 1 - self.getEpisodesSoFar()*1.0/self.getNumTraining()
         self.setEpsilon(ep*0.1)
 
@@ -201,6 +184,9 @@ class QLearnAgent(Agent):
         # parameters to zero when we are done with the pre-set number
         # of training episodes
         self.incrementEpisodesSoFar()
+        if self.getEpisodesSoFar() % 100 == 0:
+            print "Completed %s training" % self.getEpisodesSoFar()
+
         if self.getEpisodesSoFar() == self.getNumTraining():
             msg = 'Training Done (turning off epsilon and alpha)'
             print '%s\n%s' % (msg,'-' * len(msg))
