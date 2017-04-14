@@ -1,4 +1,4 @@
-# Pacman_Qlearning
+# Pacman Qlearning Agent
 This script is based on the python script written by Parsons.
 ## What is it about?
 
