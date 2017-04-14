@@ -1,6 +1,6 @@
 # Pacman_Qlearning
-## What is it about?
 This script is based on the python script written by Parsons.
+## What is it about?
 
 The main idea of this script is the implement of Q-learning method in Pacman game in UC Berkeley CS188 Intro to AI. http://ai.berkeley.edu/reinforcement.html
 
