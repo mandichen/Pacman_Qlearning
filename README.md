@@ -8,7 +8,7 @@ The script contains a Q-learning agent player class of Pacman game.
 **Note: this is not a solution for the coursework in CS188.**
 
 ## How does it work?
-1. Download the reinforcement pack of Pacman game from: [here](https://s3-us-west-2.amazonaws.com/cs188websitecontent/projects/release/reinforcement/v1/001/reinforcement.zip)
+1. Download the reinforcement pack of Pacman game from [here](https://s3-us-west-2.amazonaws.com/cs188websitecontent/projects/release/reinforcement/v1/001/reinforcement.zip)
 
 2. Unzip the package and place mlLearningAgents.py inside the directory.
 
