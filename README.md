@@ -2,10 +2,10 @@
 This script is based on the python script written by Parsons.
 ## What is it about?
 
-The main idea of this script is the implement of Q-learning method in Pacman game in UC Berkeley CS188 Intro to AI. http://ai.berkeley.edu/reinforcement.html
+The main idea of this script is the implement of Q-learning method in Pacman game in [UC Berkeley CS188 Intro to AI](http://ai.berkeley.edu/reinforcement.html).
 
 The script contains a Q-learning agent player class of Pacman game. 
-**Note: this is not a solution for the coursework in UC Berkeley CS188.**
+**Note: this is not a solution for the coursework in CS188.**
 
 ## How does it work?
 1. Download the reinforcement pack of Pacman game from: [here](https://s3-us-west-2.amazonaws.com/cs188websitecontent/projects/release/reinforcement/v1/001/reinforcement.zip)
